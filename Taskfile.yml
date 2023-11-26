@@ -1,0 +1,21 @@
+---
+version: '3'
+
+tasks:
+  build:
+    desc: Build the terraform-provider-basexform
+    cmds:
+      - go build -o terraform-provider-basexform
+    generates:
+      - terraform-provider-basexform
+
+  test:
+    desc: Run tests
+    cmds:
+      - go test ./internal/...
+
+  clean:
+    desc: Clean up binaries and temporary files
+    cmds:
+      - go clean
+      - rm -f terraform-provider-basexform
