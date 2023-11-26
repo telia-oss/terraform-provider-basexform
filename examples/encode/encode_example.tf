@@ -37,9 +37,11 @@ resource "basexform_encode" "encoded_accounts" {
 output "account_info" {
   value = {
     for account_id, encoded in basexform_encode.encoded_accounts : account_id => {
-      "original"    = account_id
-      "encoded"     = encoded.encoded
-      "length_diff" = length(account_id) - length(encoded.encoded)
+      "original"        = account_id
+      "encoded"         = encoded.encoded
+      "original_length" = length(account_id)
+      "encoded_length"  = length(encoded.encoded)
+      "length_diff"     = length(account_id) - length(encoded.encoded)
     }
   }
 }
