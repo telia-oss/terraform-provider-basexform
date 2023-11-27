@@ -25,10 +25,14 @@ archives:
     - "terraform-provider-basexform"
   format: tar.gz
   files:
-    - none
+    - LICENSE
+    - README.md
+
 checksum:
-  name_template: 'checksums.txt'
+  name_template: 'terraform-provider-basexform_{{ .Version }}_SHA256SUMS'
   algorithm: sha256
+
 signs:
   - artifacts: checksum
+    signature: "${artifact}.sig"
     args: ["--batch", "--yes", "--detach-sign", "--output", "${signature}", "${artifact}"]
