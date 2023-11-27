@@ -42,14 +42,18 @@ jobs:
       - 
         name: Generate Checksums and Signature
         run: |
-          VERSION=$(echo $GITHUB_REF | sed 's/refs\/tags\///')    
+          # Extract the version number from the tag (assuming tag is in the format v1.0.1)
+          VERSION=$(echo $GITHUB_REF | sed 's/refs\/tags\/v//')
+
+          # Generate the checksums file
           CHECKSUM_FILE="terraform-provider-basexform_${VERSION}_SHA256SUMS"
           sha256sum terraform-provider-basexform_${VERSION}_* > $CHECKSUM_FILE
-        
+
+          # Generate the GPG signature for the checksums file
           gpg --batch --detach-sign $CHECKSUM_FILE
-        
+
+          # Rename the generated files to a standardized format
           mv $CHECKSUM_FILE "terraform-provider-basexform_SHA256SUMS"
           mv "$CHECKSUM_FILE.sig" "terraform-provider-basexform_SHA256SUMS.sig"
         env:
           GITHUB_REF: ${{ github.ref }}
-        
