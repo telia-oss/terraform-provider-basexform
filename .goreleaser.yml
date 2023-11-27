@@ -35,4 +35,4 @@ checksum:
 signs:
   - artifacts: checksum
     signature: "${artifact}.sig"
-    args: ["--batch", "--yes", "--detach-sign", "--output", "${signature}", "${artifact}"]
+    args: ["--batch", "--yes", "--detach-sign", "--local-user", "${GPG_FINGERPRINT}", "--output", "${signature}", "${artifact}"]
