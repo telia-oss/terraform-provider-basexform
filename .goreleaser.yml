@@ -23,7 +23,7 @@ archives:
 - id: "terraform-provider-basexform"
   builds:
     - "terraform-provider-basexform"
-  format: tar.gz
+  format: zip
   files:
     - LICENSE
     - README.md
